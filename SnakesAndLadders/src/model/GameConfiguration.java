@@ -44,13 +44,19 @@ public class GameConfiguration extends Move { // Nathan
 	}
 	
 	public void createBlankPlayers() {
-		Player player = new Player();
-		players.add(playerCounter, player);
-		playerCounter++;
+		for (int i = 0; i < MAX_PLAYERS; i++) {
+			Player player = new Player();
+			players.add(playerCounter, player);
+			playerCounter++;
+		}
 	}
 	
 	public boolean isHuman(Player aPlayer) {
 		return aPlayer.getType() == "human";
+	}
+	
+	public boolean isComputer(Player aPlayer) {
+		return aPlayer.getType() == "AI";
 	}
 	
 	public void playerTurn(ArrayList<Player> aPlayerList, Player aPlayer) {
@@ -64,12 +70,11 @@ public class GameConfiguration extends Move { // Nathan
 					GameBoard.drawBoard(aPlayerList.get(0), aPlayerList.get(1), aPlayerList.get(2),
 										aPlayerList.get(3));
 			}
-		} else {
+		} else if (isComputer(aPlayer)){
 			MoveComputer(aPlayer.getPlayer(), aPlayer.getName());
 			GameBoard.drawBoard(aPlayerList.get(0), aPlayerList.get(1), aPlayerList.get(2), 
 								aPlayerList.get(3));
 		}
-
 	}
 	
 	
@@ -99,7 +104,7 @@ public class GameConfiguration extends Move { // Nathan
 		}
 		
 		/* Creates blank players for board spacing */
-		if ((numHuman + numComputer) < 4) {
+		if (playerCounter < 4) {
 			createBlankPlayers();
 		}
 		
