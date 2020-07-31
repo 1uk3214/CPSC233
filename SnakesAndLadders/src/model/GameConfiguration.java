@@ -25,6 +25,21 @@ public class GameConfiguration extends Move { // Nathan
 								" (max " + (MAX_PLAYERS - numHuman) + ")");
 			numComputer=playerInput.nextInt();
 		}
+		
+		/* Creates human players */
+		if (numHuman > 0) {
+			createHumanPlayers();
+		}
+		
+		/* Creates computer players */		
+		if (numComputer > 0) {
+			createComputerPlayers();
+		}
+		
+		/* Creates blank players for board spacing */
+		if (playerCounter < MAX_PLAYERS) {
+			createBlankPlayers();
+		}
 	}
 	
 	public void createHumanPlayers() {
@@ -92,22 +107,7 @@ public class GameConfiguration extends Move { // Nathan
 	 *  
 	 */
 		gameSetup();
-		
-		/* Creates human players */
-		if (numHuman > 0) {
-			createHumanPlayers();
-		}
-		
-		/* Creates computer players */		
-		if (numComputer > 0) {
-			createComputerPlayers();
-		}
-		
-		/* Creates blank players for board spacing */
-		if (playerCounter < 4) {
-			createBlankPlayers();
-		}
-		
+				
 		Player p1 = players.get(0);
 		Player p2 = players.get(1);
 		Player p3 = players.get(2);
