@@ -48,9 +48,9 @@ public class GameConfiguration extends Move { // Nathan
 	 *  
 	 *  
 	 */
-		int numComputer=0;
-		int numHuman=0;
-		int playerCounter=0;
+		int numComputer = 0;
+		int numHuman = 0;
+		int playerCounter = 0;
 		
 		
 		
@@ -94,8 +94,9 @@ public class GameConfiguration extends Move { // Nathan
 		Player p2 = players.get(1);
 		Player p3 = players.get(2);
 		Player p4 = players.get(3);
-
+		
 		GameBoard.drawBoard(p1, p2, p3, p4);
+		
 		do {
 			
 			playerTurn(players, p1);
