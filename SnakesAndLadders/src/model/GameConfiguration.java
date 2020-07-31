@@ -11,9 +11,13 @@ public class GameConfiguration extends Move { // Nathan
 	private static ArrayList<Player> players = new ArrayList<Player>(); //arrayList of player objects
 	private static Scanner playerInput;
 	
+	public boolean isHuman(Player aPlayer) {
+		return aPlayer.getType() == "human";
+	}
+	
 	public void playerTurn(ArrayList<Player> aPlayerList, Player aPlayer) {
 		
-		if (aPlayer.getType() == "human") {
+		if (isHuman(aPlayer)) {
 			System.out.println("It is your turn player " + aPlayer.getName() +  " if you would like to roll, type 'r'");
 			playerInput = new Scanner(System.in);
 			String isRoll = playerInput.nextLine();
