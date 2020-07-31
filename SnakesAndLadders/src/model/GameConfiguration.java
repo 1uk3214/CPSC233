@@ -10,6 +10,44 @@ public class GameConfiguration extends Move { // Nathan
 	final static int MAX_PLAYERS=4;
 	private static ArrayList<Player> players = new ArrayList<Player>(); //arrayList of player objects
 	private static Scanner playerInput;
+	private int numComputer = 0;
+	private int numHuman = 0;
+	private int playerCounter = 0;
+	
+	public void gameSetup() {
+		playerInput = new Scanner(System.in);
+		System.out.println("Welcome to Snakes and Ladders!");
+		System.out.println("How many human players would you like to play with? (max 4)");
+		numHuman=playerInput.nextInt();
+		
+		if (numHuman < MAX_PLAYERS) {
+			System.out.println("How many computer players would you like to play with?" + 
+								" (max " + (MAX_PLAYERS - numHuman) + ")");
+			numComputer=playerInput.nextInt();
+		}
+	}
+	
+	public void createHumanPlayers() {
+		for (int i = 0; i < numHuman; i++) {
+			Player human = new Player("human", "P" + (i + 1));
+			players.add(playerCounter, human);
+			playerCounter++;
+		}
+	}
+	
+	public void createComputerPlayers() {
+		for (int i = 0; i < numComputer; i++) {
+			Player computer = new Player("AI", "C" + (i + 1));
+			players.add(playerCounter, computer);
+			playerCounter++;
+		}
+	}
+	
+	public void createBlankPlayers() {
+		Player player = new Player();
+		players.add(playerCounter, player);
+		playerCounter++;
+	}
 	
 	public boolean isHuman(Player aPlayer) {
 		return aPlayer.getType() == "human";
@@ -48,46 +86,21 @@ public class GameConfiguration extends Move { // Nathan
 	 *  
 	 *  
 	 */
-		int numComputer = 0;
-		int numHuman = 0;
-		int playerCounter = 0;
-		
-		
-		
-		playerInput = new Scanner(System.in);
-		System.out.println("Welcome to Snakes and Ladders!");
-		System.out.println("How many human players would you like to play with? (max 4)");
-		numHuman=playerInput.nextInt();
-		
-		if (numHuman < MAX_PLAYERS) {
-			System.out.println("How many computer players would you like to play with?" + 
-								" (max " + (MAX_PLAYERS - numHuman) + ")");
-			numComputer=playerInput.nextInt();
-		}
+		gameSetup();
 		
 		/* Creates human players */
 		if (numHuman > 0) {
-			for (int i = 0; i < numHuman; i++) {
-				Player human = new Player("human", "P" + (i + 1));
-				players.add(playerCounter, human);
-				playerCounter++;
-			}
+			createHumanPlayers();
 		}
 		
 		/* Creates computer players */		
 		if (numComputer > 0) {
-			for (int i = 0; i < numComputer; i++) {
-				Player computer = new Player("AI", "C" + (i + 1));
-				players.add(playerCounter, computer);
-				playerCounter++;
-			}
+			createComputerPlayers();
 		}
 		
 		/* Creates blank players for board spacing */
 		if ((numHuman + numComputer) < 4) {
-			Player player = new Player();
-			players.add(playerCounter, player);
-			playerCounter++;
+			createBlankPlayers();
 		}
 		
 		Player p1 = players.get(0);
