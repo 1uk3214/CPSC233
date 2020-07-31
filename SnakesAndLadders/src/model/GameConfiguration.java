@@ -59,10 +59,9 @@ public class GameConfiguration extends Move { // Nathan
 	}
 	
 	public void createBlankPlayers() {
-		for (int i = playerCounter; i < MAX_PLAYERS; i++) {
+		for (int i = 0; i < (MAX_PLAYERS - playerCounter); i++) {
 			Player player = new Player();
 			players.add(playerCounter, player);
-			playerCounter++;
 		}
 	}
 	
