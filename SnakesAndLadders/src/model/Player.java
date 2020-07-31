@@ -26,10 +26,6 @@ public class Player { // Arlina
 		return this.player;
 	}
 	
-	public String getType(Player aPlayer) {
-		return type;
-	}
-
 	public String getType() {
 		return this.type;
 	}
